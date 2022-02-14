@@ -13,49 +13,11 @@ error_reporting(0);
 //--------------------------------------
 //Signup Form
 //--------------------------------------
-if (isset($_POST["signup"])) {
-  $full_name = mysqli_real_escape_string($conn, $_POST["signup_full_name"]);
-  $email = mysqli_real_escape_string($conn, $_POST["signup_email"]);
-  $password = mysqli_real_escape_string($conn, md5($_POST["signup_password"]));
-  $cpassword = mysqli_real_escape_string($conn, md5($_POST["signup_cpassword"]));
-
-  //Check if the Email Already Exist in the Database
-  $check_email = mysqli_num_rows(mysqli_query($conn, "SELECT email FROM users WHERE email='$email'"));
-
-  //Check if the password Match
-  if ($password !== $cpassword) {
-    echo "<script>alert('Password did not match.');</script>";
-  } elseif ($check_email > 0) {
-    echo "<script>alert('Email already taken.');</script>";
-  }else{
-    //Insert user information into the database
-    $sql = "INSERT INTO users (full_name, email, password)VALUES('$full_name','$email','$password')";
-    $result= mysqli_query($conn, $sql);
-    //Notification on whether Registration was successfully or not
-    if($result){
-      echo "<script>alert('User Registration Succesfully.');</script>";
-    }else{
-      echo "<script>alert('User Registration Failed.');</script>";
-    }
-  }
-}
+require_once('signUp.php');
 //----------------------------
 //Signin Form
 //---------------------------
-if (isset($_POST["signin"])) {
-  $email = mysqli_real_escape_string($conn, $_POST["email"]);
-  $password = mysqli_real_escape_string($conn, md5($_POST["password"]));
-
-  $check_email = mysqli_query($conn, "SELECT id FROM users WHERE email='$email' AND password='$password'");
-
-  if (mysqli_num_rows($check_email) > 0) {
-    $row = mysqli_fetch_assoc($check_email);
-    $_SESSION["user_id"] = $row['id'];
-    header("Location: welcome.php");
-  } else {
-    echo "<script>alert('The Email or password you entered is incorrect. Please try again.');</script>";
-  }
-}
+require_once('signIn.php')
 ?>
 <!--=============================
 PHP Ends 
