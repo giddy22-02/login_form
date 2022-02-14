@@ -1,4 +1,6 @@
 <?php
+//session
+
 session_start();
 echo $_SESSION["user_id"];
 ?>

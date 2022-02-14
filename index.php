@@ -2,20 +2,16 @@
 PHP Start
 =======================================-->
 <?php
-//Include PHP files
-include "config.php";
-//session
-session_start();
-//if(!isset($_SESSION["user_id"])){
- // header("Location: welcome.php");
-//}
+//Include connection file
+include "connection.php";
+//error reporting
 error_reporting(0);
 //--------------------------------------
-//Signup Form
+//PHP SignUp file
 //--------------------------------------
 require_once('signUp.php');
 //----------------------------
-//Signin Form
+//PHP SignIn file
 //---------------------------
 require_once('signIn.php')
 ?>
@@ -42,7 +38,9 @@ PHP Ends
 </head>
 
 <body>
+  <!--Container start-->
   <div class="container">
+    <!--form-container start-->
     <div class="forms-container">
       <div class="signin-signup">
         <form action="" method="post"  class="sign-in-form">
@@ -109,8 +107,10 @@ PHP Ends
         </form>
       </div>
     </div>
-
+    <!--form-container ends-->
+    <!--panels- container start-->
     <div class="panels-container">
+      <!--left-panel start-->
       <div class="panel left-panel">
         <div class="content">
           <h3>New in this Page</h3>
@@ -123,6 +123,8 @@ PHP Ends
         </div>
         <img src="img/login.png" class="image" alt="" />
       </div>
+      <!--left-panel end-->
+      <!--right-panel start-->
       <div class="panel right-panel">
         <div class="content">
           <h3>Already Have an Account with Us ?</h3>
@@ -135,9 +137,12 @@ PHP Ends
         </div>
         <img src="img/regester.png" class="image" alt="" />
       </div>
+       <!--right-panel end-->
     </div>
+    <!--panels - container ends-->
   </div>
-
+  <!--Container End-->
+  <!--Javascript-->
   <script src="script.js"></script>
 </body>
 
